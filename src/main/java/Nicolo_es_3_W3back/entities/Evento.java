@@ -24,17 +24,17 @@ public class Evento {
     private List<Persona> partecipanti;
 
     public Evento() {
-        
+
     }
 
-    public Evento(UUID idEvento, String titolo, LocalDate date, String descrizione, TipoEvento tipoEvento, List<Persona> partecipanti) {
-        this.idEvento = idEvento;
+    public Evento(String titolo, LocalDate date, String descrizione, TipoEvento tipoEvento, List<Persona> partecipanti) {
         this.titolo = titolo;
         this.date = date;
         this.descrizione = descrizione;
         this.tipoEvento = tipoEvento;
         this.partecipanti = partecipanti;
     }
+
 
     public String getTitolo() {
         return titolo;

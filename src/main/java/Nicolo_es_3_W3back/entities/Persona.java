@@ -20,75 +20,33 @@ public class Persona {
 
     @Enumerated(EnumType.STRING)
     private Sesso sesso;
-    @ManyToMany
-    @JoinTable(
-            name = "evento_persone",
-            joinColumns = @JoinColumn(name = "id_persona"),
-            inverseJoinColumns = @JoinColumn(name = "id_evento")
-    )
-    private List<Evento> eventi;
+
+    @OneToMany(mappedBy = "persona")
+    private List<Partecipazione> partecipazioni;
 
     public Persona() {
     }
 
-    public Persona(UUID idPersona, String nome, String cognome, String email, LocalDate dataNascita, Sesso sesso, List<Evento> eventi) {
-        this.idPersona = idPersona;
+    public Persona(String nome, String cognome, String email, LocalDate dataNascita, Sesso sesso, List<Partecipazione> partecipazioni) {
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
         this.dataNascita = dataNascita;
         this.sesso = sesso;
-        this.eventi = eventi;
+        this.partecipazioni = partecipazioni;
     }
 
-    public List<Evento> getEventi() {
-        return eventi;
+    // Getters e Setters
+
+    public List<Partecipazione> getPartecipazioni() {
+        return partecipazioni;
     }
 
-    public void setEventi(List<Evento> eventi) {
-        this.eventi = eventi;
+    public void setPartecipazioni(List<Partecipazione> partecipazioni) {
+        this.partecipazioni = partecipazioni;
     }
 
-    public Sesso getSesso() {
-        return sesso;
-    }
-
-    public void setSesso(Sesso sesso) {
-        this.sesso = sesso;
-    }
-
-    public LocalDate getDataNascita() {
-        return dataNascita;
-    }
-
-    public void setDataNascita(LocalDate dataNascita) {
-        this.dataNascita = dataNascita;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
-    public String getCognome() {
-        return cognome;
-    }
-
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    // Altri getter e setter
 
     @Override
     public String toString() {
@@ -99,8 +57,7 @@ public class Persona {
                 ", email='" + email + '\'' +
                 ", dataNascita=" + dataNascita +
                 ", sesso=" + sesso +
-                ", eventi=" + eventi +
+                ", partecipazioni=" + partecipazioni +
                 '}';
     }
-
 }
