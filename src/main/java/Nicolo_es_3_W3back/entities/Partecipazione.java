@@ -23,13 +23,22 @@ public class Partecipazione {
     private StatoPartecipazione stato;
 
     public Partecipazione() {
-
     }
 
     public Partecipazione(Persona persona, Evento evento, StatoPartecipazione stato) {
         this.persona = persona;
         this.evento = evento;
         this.stato = stato;
+    }
+
+    // Getters e Setters
+
+    public UUID getIdPartecipazione() {
+        return idPartecipazione;
+    }
+
+    public void setIdPartecipazione(UUID idPartecipazione) {
+        this.idPartecipazione = idPartecipazione;
     }
 
     public Persona getPersona() {
@@ -55,6 +64,9 @@ public class Partecipazione {
     public void setStato(StatoPartecipazione stato) {
         this.stato = stato;
     }
+
+
+    // toString method
 
     @Override
     public String toString() {

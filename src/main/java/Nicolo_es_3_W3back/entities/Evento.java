@@ -3,7 +3,6 @@ package Nicolo_es_3_W3back.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -14,66 +13,38 @@ public class Evento {
     private UUID idEvento;
 
     private String titolo;
-    private LocalDate date;
+    private LocalDate data;
     private String descrizione;
 
     @Enumerated(EnumType.STRING)
     private TipoEvento tipoEvento;
 
-    @ManyToMany(mappedBy = "eventi")
-    private List<Persona> partecipanti;
+    private long listaNPersone;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location; // Aggiungi questo campo
 
     public Evento() {
-
     }
 
-    public Evento(String titolo, LocalDate date, String descrizione, TipoEvento tipoEvento, List<Persona> partecipanti) {
+    public Evento(String titolo, LocalDate data, String descrizione, TipoEvento tipoEvento, long listaNPersone, Location location) {
         this.titolo = titolo;
-        this.date = date;
+        this.data = data;
         this.descrizione = descrizione;
         this.tipoEvento = tipoEvento;
-        this.partecipanti = partecipanti;
+        this.listaNPersone = listaNPersone;
+        this.location = location;
     }
 
+    // Getters e Setters
 
-    public String getTitolo() {
-        return titolo;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setTitolo(String titolo) {
-        this.titolo = titolo;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public String getDescrizione() {
-        return descrizione;
-    }
-
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
-    }
-
-    public TipoEvento getTipoEvento() {
-        return tipoEvento;
-    }
-
-    public void setTipoEvento(TipoEvento tipoEvento) {
-        this.tipoEvento = tipoEvento;
-    }
-
-    public List<Persona> getPartecipanti() {
-        return partecipanti;
-    }
-
-    public void setPartecipanti(List<Persona> partecipanti) {
-        this.partecipanti = partecipanti;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     @Override
@@ -81,10 +52,11 @@ public class Evento {
         return "Evento{" +
                 "idEvento=" + idEvento +
                 ", titolo='" + titolo + '\'' +
-                ", date=" + date +
+                ", data=" + data +
                 ", descrizione='" + descrizione + '\'' +
                 ", tipoEvento=" + tipoEvento +
-                ", partecipanti=" + partecipanti +
+                ", listaNPersone=" + listaNPersone +
+                ", location=" + location +
                 '}';
     }
 }
